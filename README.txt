@@ -1,0 +1,1 @@
+The UCD LMS Training Check C# application show you how to access the LMS system and check for a specific course. Is this situation it's for the latest FERPA course. You will have to get your own LMS access account. 
