@@ -1,0 +1,2534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.sumtotalsystems.com/sumtotal7/sumtotalws/TranscriptManagement/" xmlns:s1="http://www.sumtotalsystems.com/sumtotal7/sumtotalbo/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://www.sumtotalsystems.com/sumtotal7/sumtotalws/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.sumtotalsystems.com/sumtotal7/sumtotalws/TranscriptManagement/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.sumtotalsystems.com/sumtotal7/sumtotalws/TranscriptManagement/">
+      <s:import namespace="http://www.sumtotalsystems.com/sumtotal7/sumtotalbo/" />
+      <s:element name="GetUserTranscripts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="forUserId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="populationLevel" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserTranscriptsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserTranscriptsResult" type="tns:ArrayOfActivityAttempt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfActivityAttempt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActivityAttempt" nillable="true" type="s1:ActivityAttempt" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserTranscriptsByDt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="inUTC" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="forUserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="forActivityId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="populationLevel" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserTranscriptsByDtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserTranscriptsByDtResult" type="tns:ArrayOfActivityAttempt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfActivityAttempt" nillable="true" type="tns:ArrayOfActivityAttempt" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.sumtotalsystems.com/sumtotal7/sumtotalbo/">
+      <s:complexType name="ActivityAttempt">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityAttemptCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityAttemptCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityAttemptPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityAttemptPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="RegistrationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Registration" type="s1:ActivityRegistration" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsWaived" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsComplete" type="s1:CompletionStatus" />
+              <s:element minOccurs="1" maxOccurs="1" name="Success" type="s1:SuccessStatus" />
+              <s:element minOccurs="1" maxOccurs="1" name="Score" type="s1:NullableDecimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Grade" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="ElapsedSeconds" type="s1:NullableDouble" />
+              <s:element minOccurs="1" maxOccurs="1" name="MergedSkills" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="HasAttended" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="Source" type="s1:NullableInt32" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Entity" abstract="true" />
+      <s:complexType name="PersonRelationPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PersonFK" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserNumber" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager1FK" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager2FK" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager3FK" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager4FK" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager5FK" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager6FK" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager7FK" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager8FK" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager9FK" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeptNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobTitle" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobPositionName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProcessCoordinatorFK" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="PositionEntryDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CurrentPositionStartDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="LocationCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LocationName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ManagerCurrencyFK" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="OrgCd" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreatedDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CreatedBy" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModifiedDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="ModifiedBy" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="NullableInt32">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsNull" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NullableDateTime">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsNull" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonRelationCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:PersonRelationPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="PersonRelation">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:PersonRelationCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationRequiredCompetencyPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OrganizationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Organization" type="s1:Organization" />
+              <s:element minOccurs="0" maxOccurs="1" name="CompetencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Competency" type="s1:Competency" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Organization">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsDomain" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="HierarchyTypeId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HierarchyType" type="s1:HierarchyType" />
+              <s:element minOccurs="0" maxOccurs="1" name="ParentId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Parent" type="s1:Organization" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressCity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressCountry" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressFax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPhone1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPhone2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressState" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressStreet1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressStreet2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPostalCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactEmail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactUserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactUser" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredActivities" nillable="true" type="s1:ArrayOfOrganizationRequiredActivity" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredSkills" nillable="true" type="s1:ArrayOfOrganizationRequiredSkill" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredCompetencies" nillable="true" type="s1:ArrayOfOrganizationRequiredCompetency" />
+              <s:element minOccurs="1" maxOccurs="1" name="OrganizationUsers" nillable="true" type="s1:ArrayOfOrganizationUser" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="HierarchyType">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:HierarchyTypeCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="HierarchyTypeCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:HierarchyTypePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="HierarchyTypePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="User">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FirstNamePronounciation" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastNamePronounciation" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NameTitle" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NameSuffix" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobTitle" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NtAccount" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="BirthDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastReviewDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CompanyCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserCodeId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s1:UserCode" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserStatusId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserStatus" type="s1:UserStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="PassportPUID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ManagerId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DefaultApproverId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DefaultApprover" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Approver" type="s1:User" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiresConfirmation" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SecurityRoleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SecurityRole" type="s1:SecurityRole" />
+              <s:element minOccurs="1" maxOccurs="1" name="AutoPublishCalender" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanViewAllUsers" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsLoginEnabled" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsInternal" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="HasWebServiceAccess" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsInstructor" type="s1:NullableBoolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="MustChangePassword" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="LanguagePreferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LanguagePreference" type="s1:UserLanguage" />
+              <s:element minOccurs="0" maxOccurs="1" name="CurrencyPreferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CurrencyPreference" type="s1:Currency" />
+              <s:element minOccurs="0" maxOccurs="1" name="TimeZonePreferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TimeZonePreference" type="s1:TimeZone" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressCity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressCountry" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressFax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPhone1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPhone2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressState" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressStreet1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressStreet2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPostalCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="EmailFormat" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="WebexUserID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="WebexPassword" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ImageID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverLevel1Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverLevel1" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverLevel2Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverLevel2" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverLevel3Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverLevel3" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverLevel4Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverLevel4" type="s1:User" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActivityAttempts" nillable="true" type="s1:ArrayOfActivityAttempt" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActivityRegistrations" nillable="true" type="s1:ArrayOfActivityRegistration" />
+              <s:element minOccurs="1" maxOccurs="1" name="AcquiredSkills" nillable="true" type="s1:ArrayOfUserAcquiredSkill" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredActivities" nillable="true" type="s1:ArrayOfUserRequiredActivity" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredSkills" nillable="true" type="s1:ArrayOfUserRequiredSkill" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredCompetencies" nillable="true" type="s1:ArrayOfUserRequiredCompetency" />
+              <s:element minOccurs="1" maxOccurs="1" name="MemberDomains" nillable="true" type="s1:ArrayOfDomainUser" />
+              <s:element minOccurs="1" maxOccurs="1" name="AcquiredCertifications" nillable="true" type="s1:ArrayOfUserAcquiredCertification" />
+              <s:element minOccurs="1" maxOccurs="1" name="MemberJobs" nillable="true" type="s1:ArrayOfJobUser" />
+              <s:element minOccurs="1" maxOccurs="1" name="MemberOrganizations" nillable="true" type="s1:ArrayOfOrganizationUser" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager" nillable="true" type="s1:ArrayOfPersonRelation" />
+              <s:element minOccurs="0" maxOccurs="1" name="AgencySubElementCode" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserCode">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserCodeCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserCodeCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserCodePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserCodePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserStatusCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserStatusCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserStatusPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserStatusPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Domain">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:DomainCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DomainCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:DomainPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DomainPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsDomain" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="HierarchyTypeId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HierarchyType" type="s1:HierarchyType" />
+              <s:element minOccurs="0" maxOccurs="1" name="ParentId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Parent" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressCity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressCountry" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressFax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPhone1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPhone2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressState" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressStreet1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressStreet2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPostalCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactEmail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactUserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactUser" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+              <s:element minOccurs="0" maxOccurs="1" name="RootCatalog" type="s1:Catalog" />
+              <s:element minOccurs="1" maxOccurs="1" name="DomainUsers" nillable="true" type="s1:ArrayOfDomainUser" />
+              <s:element minOccurs="1" maxOccurs="1" name="ChildDomains" nillable="true" type="s1:ArrayOfDomain" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="NullableDecimal">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsNull" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NullableDouble">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsNull" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Currency">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CurrencyCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CurrencyCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CurrencyPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CurrencyPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Catalog">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CatalogCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CatalogCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CatalogPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CatalogPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LLevel" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="LName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LDescription" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NodeKeywords" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PrntNodeId" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="LImage" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="RootCatalogId" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="BaseCatalogId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BaseCatalog" type="s1:Catalog" />
+              <s:element minOccurs="0" maxOccurs="1" name="LUrl" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="AssActivities" nillable="true" type="s1:ArrayOfActivityCatalogs" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfActivityCatalogs">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActivityCatalogs" nillable="true" type="s1:ActivityCatalogs" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActivityCatalogs">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityCatalogsCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityCatalogsCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityCatalogsPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityCatalogsPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="CatalogId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Catalog" type="s1:Catalog" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Activity">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LabelId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Label" type="s1:ActivityLabel" />
+              <s:element minOccurs="0" maxOccurs="1" name="ParentActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ParentActivity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="RootActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RootActivity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DescriptionHTML" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsOpenForRegistration" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="NoRegistrationRequired" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaximumNumberOfAttempts" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsCancelled" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsHidden" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsPrivate" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="EmployeeNotes" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="InstructorNotes" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BaseCost" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CancellationCost" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="LateCancellationCost" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="NoShowCost" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CostCurrency" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="RegistrationDeadline" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="RegCancellationDeadline" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="TimeZone" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiresApproval" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="DefaultApproverId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DefaultApprover" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactEmail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NotificationEmail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MetadataId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Metadata" type="s1:ActivityMetadata" />
+              <s:element minOccurs="0" maxOccurs="1" name="SystemMetadataId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SystemMetadata" type="s1:ActivitySystemMetadata" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsCertification" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="LEMtdId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LEMtd" type="s1:LEMtd" />
+              <s:element minOccurs="0" maxOccurs="1" name="OfferingStatusId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OfferingStatus" type="s1:ActivityOffering" />
+              <s:element minOccurs="1" maxOccurs="1" name="MinimumCapacity" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaximumCapacity" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="DIFSettingsId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DIFSettings" type="s1:TRDIFSettings" />
+              <s:element minOccurs="0" maxOccurs="1" name="DurationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Duration" type="s1:ActivityDuration" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastUpdateDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CBTPath" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LaunchMethod" type="s1:LaunchMethod" />
+              <s:element minOccurs="0" maxOccurs="1" name="ImageUrl" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LEMtd_IconName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SharedDomains" nillable="true" type="s1:ArrayOfActivitySharedDomain" />
+              <s:element minOccurs="1" maxOccurs="1" name="Instructors" nillable="true" type="s1:ArrayOfActivityInstructor" />
+              <s:element minOccurs="1" maxOccurs="1" name="Locations" nillable="true" type="s1:ArrayOfActivityLocation" />
+              <s:element minOccurs="1" maxOccurs="1" name="Equipments" nillable="true" type="s1:ArrayOfActivityEquipment" />
+              <s:element minOccurs="1" maxOccurs="1" name="Tracks" nillable="true" type="s1:ArrayOfActivityTrack" />
+              <s:element minOccurs="1" maxOccurs="1" name="Catalogs" nillable="true" type="s1:ArrayOfActivityCatalogs" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityLabel">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityLabelCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityLabelCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityLabelPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityLabelPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Icon" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityMetadata">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityMetadataCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityMetadataCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityMetadataPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityMetadataPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="Keys" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="Values" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivitySystemMetadata">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivitySystemMetadataCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivitySystemMetadataCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivitySystemMetadataPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivitySystemMetadataPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MediaTypeId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MediaType" type="s1:MediaType" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContentTypeId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContentType" type="s1:ContentType" />
+              <s:element minOccurs="0" maxOccurs="1" name="LEMtdId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LEMtd" type="s1:LEMtd" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExpiryDate" type="s1:NullableDateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="MediaType">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:MediaTypeCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="MediaTypeCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:MediaTypePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="MediaTypePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ContentType">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ContentTypeCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ContentTypeCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ContentTypePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ContentTypePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="LEMtd">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:LEMtdCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="LEMtdCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:LEMtdPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="LEMtdPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityOffering">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityOfferingCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityOfferingCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityOfferingPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityOfferingPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanBeOffered" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OfferingOfActivity" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TRDIFSettings">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:TRDIFSettingsCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TRDIFSettingsCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:TRDIFSettingsPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TRDIFSettingsPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsDIF" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="PreReq" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PublicConcern" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Objectives" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Methods" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LegalDurationDays" type="s1:NullableDouble" />
+              <s:element minOccurs="1" maxOccurs="1" name="LegalDurationHours" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="LegalDurationMinutes" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExternalID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TROrgId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TROrg" type="s1:TotalRegulationOrg" />
+              <s:element minOccurs="0" maxOccurs="1" name="TRCategoryId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TRCategory" type="s1:TotalRegulationCategory" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TotalRegulationOrg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:TotalRegulationOrgCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TotalRegulationOrgCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:TotalRegulationOrgPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TotalRegulationOrgPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UniqueId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TotalRegulationCategory">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:TotalRegulationCategoryCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TotalRegulationCategoryCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:TotalRegulationCategoryPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TotalRegulationCategoryPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UniqueId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityDuration">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityDurationCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityDurationCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityDurationPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityDurationPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="EstCreditHours" type="s1:NullableDouble" />
+              <s:element minOccurs="1" maxOccurs="1" name="EstDuration_Days" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="EstDuration_Hours" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="EstDuration_Minutes" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="EstDuration_Seconds" type="s1:NullableInt32" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="LaunchMethod">
+        <s:restriction base="s:string">
+          <s:enumeration value="NONE" />
+          <s:enumeration value="SUMTOTAL_TOOLBOOK" />
+          <s:enumeration value="AT_T_CONNECT" />
+          <s:enumeration value="SUMTOTAL_CONTENT_API" />
+          <s:enumeration value="AICC_HACP" />
+          <s:enumeration value="SKILLSOFT_COURSE_PLAYER" />
+          <s:enumeration value="MACROMEDIA_AUTHORWARE" />
+          <s:enumeration value="QUESTIONMARK_PERCEPTION_AICC" />
+          <s:enumeration value="NETG_LEARNING_STUDIO" />
+          <s:enumeration value="MACROMEDIA_COURSEBUILDER" />
+          <s:enumeration value="SUMTOTAL_VIRTUAL_CLASSROOM" />
+          <s:enumeration value="KNOWLEDGE_DOCUMENT" />
+          <s:enumeration value="MENTERGY_LEARNLINC" />
+          <s:enumeration value="SKILLSOFT_IT_SKILLS" />
+          <s:enumeration value="AICC_JAVASCRIPT" />
+          <s:enumeration value="CENTRA" />
+          <s:enumeration value="SUMTOTAL_EXPERIENCE" />
+          <s:enumeration value="SCORM_1_2" />
+          <s:enumeration value="GENERIC_DOCUMENT" />
+          <s:enumeration value="SKILLSOFT_SKILL_SIM" />
+          <s:enumeration value="SCORM_2004" />
+          <s:enumeration value="WEBEX" />
+          <s:enumeration value="ADOBE_ACROBAT_CONNECT_PROFESSIONAL" />
+          <s:enumeration value="LIVEMEETING" />
+          <s:enumeration value="QUICK_ASSESSMENT" />
+          <s:enumeration value="MOBILE_SCORM_1_2" />
+          <s:enumeration value="ILINC" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfActivitySharedDomain">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActivitySharedDomain" nillable="true" type="s1:ActivitySharedDomain" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActivitySharedDomain">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivitySharedDomainCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivitySharedDomainCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivitySharedDomainPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivitySharedDomainPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfActivityInstructor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActivityInstructor" nillable="true" type="s1:ActivityInstructor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActivityInstructor">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityInstructorCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityInstructorCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityInstructorPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityInstructorPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="InstructorId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Instructor" type="s1:User" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsPrimary" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsResponsible" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsQualified" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsConfirmed" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfActivityLocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActivityLocation" nillable="true" type="s1:ActivityLocation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActivityLocation">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityLocationCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityLocationCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityLocationPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityLocationPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="LocationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Location" type="s1:Location" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Approver" type="s1:User" />
+              <s:element minOccurs="1" maxOccurs="1" name="ApprovalStatus" type="s1:ApprovalStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Location">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:LocationCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="LocationCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:LocationPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="LocationPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PersonnelEMail" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaximumCapacity" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiresApproval" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="FacilityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Facility" type="s1:Facility" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Approver" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Facility">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:FacilityCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FacilityCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:FacilityPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FacilityPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactPersonFirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactPersonLastName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Directions" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PersonnelEMail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsInternal" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiresApproval" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressCity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressCountry" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressFax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPhone1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPhone2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressState" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressStreet1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressStreet2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressPostalCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AddressEmail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Approver" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="TimeZonePreferenceId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TimeZonePreference" type="s1:TimeZone" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TimeZone">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:TimeZoneCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TimeZoneCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:TimeZonePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TimeZonePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CountryCodeId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="StandardTimeName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DaylightSavingTimeName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="StandardTimeCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DaylightSavingTimeCode" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ObservesDaylightSavingTime" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ApprovalStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Pending" />
+          <s:enumeration value="Approved" />
+          <s:enumeration value="Declined" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfActivityEquipment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActivityEquipment" nillable="true" type="s1:ActivityEquipment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActivityEquipment">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityEquipmentCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityEquipmentCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityEquipmentPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityEquipmentPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Equipment" type="s1:Equipment" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Approver" type="s1:User" />
+              <s:element minOccurs="1" maxOccurs="1" name="ApprovalStatus" type="s1:ApprovalStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Equipment">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:EquipmentCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EquipmentCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:EquipmentPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EquipmentPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiresApproval" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PersonnelEMail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="LocationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Location" type="s1:Location" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentTypeId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentType" type="s1:EquipmentType" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Approver" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EquipmentType">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:EquipmentTypeCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EquipmentTypeCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:EquipmentTypePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EquipmentTypePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfActivityTrack">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActivityTrack" nillable="true" type="s1:ActivityTrack" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActivityTrack">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityTrackCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityTrackCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityTrackPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityTrackPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApproverId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Approver" type="s1:User" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="CostBase" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CostWhenCancelledBeforeDeadline" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CostWhenCancelledAfterDeadline" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CostWhenNoShow" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s1:Currency" />
+              <s:element minOccurs="0" maxOccurs="1" name="OwnerActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OwnerActivity" type="s1:Activity" />
+              <s:element minOccurs="1" maxOccurs="1" name="CostRule" type="s1:TrackCostingRule" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="TrackCostingRule">
+        <s:restriction base="s:string">
+          <s:enumeration value="NoEcommerceFixedPrice" />
+          <s:enumeration value="NoEcommerceVariablePrice" />
+          <s:enumeration value="EcommerceFixedPrice" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDomainUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DomainUser" nillable="true" type="s1:DomainUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DomainUser">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:DomainUserCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DomainUserCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:DomainUserPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DomainUserPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="SecurityRoleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SecurityRole" type="s1:SecurityRole" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsPrimary" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SecurityRole">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:SecurityRoleCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SecurityRoleCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:SecurityRolePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SecurityRolePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="InheritPermissions" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="BaseRoleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BaseRole" type="s1:SecurityRole" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="Permissions" type="s1:Permission" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Permission">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Name" type="s1:PermissionName" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PermissionName">
+        <s:restriction base="s:string">
+          <s:enumeration value="CanExportData" />
+          <s:enumeration value="CanManageKnowledgeDocs" />
+          <s:enumeration value="CanViewDirectReports" />
+          <s:enumeration value="CanSelectUploadShare" />
+          <s:enumeration value="CanGoDirectToActivityWaitList" />
+          <s:enumeration value="CanBypassBilling" />
+          <s:enumeration value="CanSpecifyNoneForBillingOrg" />
+          <s:enumeration value="CanRegisterAllUsers" />
+          <s:enumeration value="CanManageOwnRoster" />
+          <s:enumeration value="CanManageOthersRoster" />
+          <s:enumeration value="CanManageRosterAsInstructor" />
+          <s:enumeration value="CanApproveTrainingRequests" />
+          <s:enumeration value="CanManageAgenda" />
+          <s:enumeration value="CanInviteGuests" />
+          <s:enumeration value="CanViewReports" />
+          <s:enumeration value="CanViewObjects" />
+          <s:enumeration value="CanUseAlternateJobAnalysis" />
+          <s:enumeration value="CanUseAlternateOrgAnalysis" />
+          <s:enumeration value="CanManageOwnSkill" />
+          <s:enumeration value="CanManageOthersSkill" />
+          <s:enumeration value="CanViewAssessment" />
+          <s:enumeration value="CanCreateAssessment" />
+          <s:enumeration value="CanCloneAssessment" />
+          <s:enumeration value="CanCreateQuestion" />
+          <s:enumeration value="CanBorrowQuestion" />
+          <s:enumeration value="CanManageIndividualPlan" />
+          <s:enumeration value="CanManageGroupPlan" />
+          <s:enumeration value="CanManageOthersPlan" />
+          <s:enumeration value="CanManageOwnLearning" />
+          <s:enumeration value="CanManageOthersLearning" />
+          <s:enumeration value="CanManageSelfReportedTraining" />
+          <s:enumeration value="CanManageOthersSelfReportedTraining" />
+          <s:enumeration value="CanManageVirtualSessions" />
+          <s:enumeration value="CanAccessCollaborationCenter" />
+          <s:enumeration value="CanAccessAuthoring" />
+          <s:enumeration value="CanManageUser" />
+          <s:enumeration value="CanMapUser" />
+          <s:enumeration value="CanManageOrg" />
+          <s:enumeration value="CanMapOrg" />
+          <s:enumeration value="CanManageJob" />
+          <s:enumeration value="CanMapJob" />
+          <s:enumeration value="CanManageDomain" />
+          <s:enumeration value="CanMapDomain" />
+          <s:enumeration value="CanManageAudience" />
+          <s:enumeration value="CanMapAudience" />
+          <s:enumeration value="CanManageSkill" />
+          <s:enumeration value="CanMapSkill" />
+          <s:enumeration value="CanManageActivity" />
+          <s:enumeration value="CanMapActivity" />
+          <s:enumeration value="CanManageEvaluations" />
+          <s:enumeration value="CanMapEvaluations" />
+          <s:enumeration value="CanManageInstructors" />
+          <s:enumeration value="CanUseDesigner" />
+          <s:enumeration value="CanManageTaxonomy" />
+          <s:enumeration value="CanOrganizeTaxonomyItems" />
+          <s:enumeration value="CanManageCollaborationCenter" />
+          <s:enumeration value="CanConfigureSystem" />
+          <s:enumeration value="CanManageSupplementalData" />
+          <s:enumeration value="CanManageResource" />
+          <s:enumeration value="CanMapResource" />
+          <s:enumeration value="CanManagePurchaseOrder" />
+          <s:enumeration value="CanMapPurchaseOrder" />
+          <s:enumeration value="CanManageNotificationTemplates" />
+          <s:enumeration value="CanManageReports" />
+          <s:enumeration value="CanManageRemoteServer" />
+          <s:enumeration value="CanMapRemoteServer" />
+          <s:enumeration value="CanManageMetaData" />
+          <s:enumeration value="CanManageLEDef" />
+          <s:enumeration value="CanManageLEDefOpt" />
+          <s:enumeration value="CanMapLEDef" />
+          <s:enumeration value="CanManageEvent" />
+          <s:enumeration value="CanGoDirectToLEDefWaitList" />
+          <s:enumeration value="CanGoDirectToClassWaitList" />
+          <s:enumeration value="CanUseIM" />
+          <s:enumeration value="CanManageUserOpt" />
+          <s:enumeration value="CanManageUserSecurity" />
+          <s:enumeration value="CanManageOrgOpt" />
+          <s:enumeration value="CanManageJobOpt" />
+          <s:enumeration value="CanManageSkillOpt" />
+          <s:enumeration value="CanPublishLEDef" />
+          <s:enumeration value="CanManageActivityOpt" />
+          <s:enumeration value="CanManageAudienceOpt" />
+          <s:enumeration value="CanViewAudienceUsers" />
+          <s:enumeration value="CanManageTrack" />
+          <s:enumeration value="CanManageActivityCharges" />
+          <s:enumeration value="CanManageNotifications" />
+          <s:enumeration value="CanEditMetadata" />
+          <s:enumeration value="CanUploadMetadataDefinitions" />
+          <s:enumeration value="CanChooseVirtualDirectoryForPublishing" />
+          <s:enumeration value="CanAddExpertsToCollaborationCenter" />
+          <s:enumeration value="CanManageOthersProfile" />
+          <s:enumeration value="CanManageTrainingRequests" />
+          <s:enumeration value="CanMapTrack" />
+          <s:enumeration value="CanPublishKnowledgeDocs" />
+          <s:enumeration value="CanUseQualifiedEmployeeFinder" />
+          <s:enumeration value="CanViewCollaborationCenter" />
+          <s:enumeration value="MustPayForEcommerce" />
+          <s:enumeration value="CanAccessReporting" />
+          <s:enumeration value="CanUseSearchPath" />
+          <s:enumeration value="CanManageQuestionBank" />
+          <s:enumeration value="CanAttachFilesInCollaborationCenter" />
+          <s:enumeration value="CanManageAccounts" />
+          <s:enumeration value="CanManageAssignments" />
+          <s:enumeration value="CanManageContinuingEducation" />
+          <s:enumeration value="CanManageOthersAcquiredSkill" />
+          <s:enumeration value="CanManageOthersRequiredSkill" />
+          <s:enumeration value="CanManageOwnAcquiredSkill" />
+          <s:enumeration value="CanManageOwnRequiredSkill" />
+          <s:enumeration value="CanManagePerformance" />
+          <s:enumeration value="CanManageVersions" />
+          <s:enumeration value="CanMapAccounts" />
+          <s:enumeration value="CanReviewContent" />
+          <s:enumeration value="CanSignOnBehalfOfManager" />
+          <s:enumeration value="CanUseOfflineContent" />
+          <s:enumeration value="CanViewAdminAuditReports" />
+          <s:enumeration value="CanViewManagerSignatureReports" />
+          <s:enumeration value="CanViewOthersInvoice" />
+          <s:enumeration value="CanViewOthersNotificationEmails" />
+          <s:enumeration value="CanViewOwnInvoice" />
+          <s:enumeration value="CanManageOwnPreferences" />
+          <s:enumeration value="CanManageActiveActivity" />
+          <s:enumeration value="CanManageInActiveActivity" />
+          <s:enumeration value="CanManageObserverTasks" />
+          <s:enumeration value="CanManageObservationChecklists" />
+          <s:enumeration value="CanManageAdHocTraining" />
+          <s:enumeration value="NotSpecified" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDomain">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Domain" nillable="true" type="s1:Domain" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NullableBoolean">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsNull" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserLanguage">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserLanguageCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserLanguageCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserLanguagePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserLanguagePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LCID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfActivityAttempt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActivityAttempt" nillable="true" type="s1:ActivityAttempt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfActivityRegistration">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActivityRegistration" nillable="true" type="s1:ActivityRegistration" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActivityRegistration">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityRegistrationCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityRegistrationCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityRegistrationPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityRegistrationPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="1" maxOccurs="1" name="RegistrationStatus" type="s1:RegistrationStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="AllocationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Allocation" type="s1:ActivityAllocation" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReminderNoteDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ConfirmationNoteDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CancelledNoteDate" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CertificationNoteDate" type="s1:NullableDateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="RegistrationStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Registered" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="OnWaitlist" />
+          <s:enumeration value="HoldForApproval" />
+          <s:enumeration value="Completed" />
+          <s:enumeration value="NoShow" />
+          <s:enumeration value="ReservedWaitList" />
+          <s:enumeration value="ExpiredWaitList" />
+          <s:enumeration value="Replaced" />
+          <s:enumeration value="Waived" />
+          <s:enumeration value="InProgress" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ActivityAllocation">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityAllocationCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityAllocationCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityAllocationPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityAllocationPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalSeats" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OccupiedSeats" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReservedSeats" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="AllocationExpirationDate" type="s1:NullableDateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfUserAcquiredSkill">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserAcquiredSkill" nillable="true" type="s1:UserAcquiredSkill" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserAcquiredSkill">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserAcquiredSkillCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserAcquiredSkillCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserAcquiredSkillPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserAcquiredSkillPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="SkillId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Skill" type="s1:Skill" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScaleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScale" type="s1:ProficiencyScale" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValueId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValue" type="s1:ProficiencyValue" />
+              <s:element minOccurs="1" maxOccurs="1" name="FirstAcquisitionDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="MostRecentAcquisitionDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CertificationNote" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CertificationNoteDate" type="s1:NullableDateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Skill">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:SkillCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SkillCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:SkillPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SkillPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContentTypeId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContentType" type="s1:ContentType" />
+              <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="QuestionStem" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScaleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScale" type="s1:ProficiencyScale" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+              <s:element minOccurs="1" maxOccurs="1" name="SharedDomains" nillable="true" type="s1:ArrayOfSkillSharedDomain" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ProficiencyScale">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ProficiencyScaleCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ProficiencyScaleCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ProficiencyScalePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ProficiencyScalePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfSkillSharedDomain">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SkillSharedDomain" nillable="true" type="s1:SkillSharedDomain" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SkillSharedDomain">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:SkillSharedDomainCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SkillSharedDomainCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:SkillSharedDomainPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SkillSharedDomainPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SkillId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Skill" type="s1:Skill" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ProficiencyValue">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ProficiencyValueCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ProficiencyValueCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ProficiencyValuePropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ProficiencyValuePropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScaleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScale" type="s1:ProficiencyScale" />
+              <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfUserRequiredActivity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserRequiredActivity" nillable="true" type="s1:UserRequiredActivity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserRequiredActivity">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserRequiredActivityCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserRequiredActivityCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserRequiredActivityPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserRequiredActivityPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+              <s:element minOccurs="1" maxOccurs="1" name="MinimumGrade" type="s1:NullableInt32" />
+              <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsRequired" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Priority">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:PriorityCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="PriorityCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:PriorityPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="PriorityPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfUserRequiredSkill">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserRequiredSkill" nillable="true" type="s1:UserRequiredSkill" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserRequiredSkill">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserRequiredSkillCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserRequiredSkillCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserRequiredSkillPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserRequiredSkillPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="SkillId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Skill" type="s1:Skill" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScaleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScale" type="s1:ProficiencyScale" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValueId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValue" type="s1:ProficiencyValue" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+              <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfUserRequiredCompetency">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserRequiredCompetency" nillable="true" type="s1:UserRequiredCompetency" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserRequiredCompetency">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserRequiredCompetencyCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserRequiredCompetencyCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserRequiredCompetencyPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserRequiredCompetencyPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="CompetencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Competency" type="s1:Competency" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+              <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Competency">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CompetencyCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CompetencyCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CompetencyPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CompetencyPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="QuestionStem" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredSkills" nillable="true" type="s1:ArrayOfCompetencyRequiredSkill" />
+              <s:element minOccurs="1" maxOccurs="1" name="SharedDomains" nillable="true" type="s1:ArrayOfCompetencySharedDomain" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCompetencyRequiredSkill">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CompetencyRequiredSkill" nillable="true" type="s1:CompetencyRequiredSkill" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CompetencyRequiredSkill">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CompetencyRequiredSkillCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CompetencyRequiredSkillCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CompetencyRequiredSkillPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CompetencyRequiredSkillPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CompetencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Competency" type="s1:Competency" />
+              <s:element minOccurs="0" maxOccurs="1" name="SkillId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Skill" type="s1:Skill" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScaleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScale" type="s1:ProficiencyScale" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValueId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValue" type="s1:ProficiencyValue" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCompetencySharedDomain">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CompetencySharedDomain" nillable="true" type="s1:CompetencySharedDomain" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CompetencySharedDomain">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CompetencySharedDomainCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CompetencySharedDomainCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:CompetencySharedDomainPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CompetencySharedDomainPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfUserAcquiredCertification">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserAcquiredCertification" nillable="true" type="s1:UserAcquiredCertification" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserAcquiredCertification">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserAcquiredCertificationCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserAcquiredCertificationCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:UserAcquiredCertificationPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserAcquiredCertificationPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="CertificationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Certification" type="s1:Activity" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfJobUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobUser" nillable="true" type="s1:JobUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JobUser">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobUserCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobUserCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobUserPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobUserPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Job" type="s1:Job" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsPrimaryJob" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Job">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptText4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptMemo1" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate1" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptDate2" type="s1:NullableDateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptYesNo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptMoney" type="s1:NullableDecimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptInteger" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptFloat" type="s1:NullableDouble" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptCurrency" type="s1:Currency" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredActivities" nillable="true" type="s1:ArrayOfJobRequiredActivity" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredSkills" nillable="true" type="s1:ArrayOfJobRequiredSkill" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredCompetencies" nillable="true" type="s1:ArrayOfJobRequiredCompetency" />
+              <s:element minOccurs="1" maxOccurs="1" name="JobUsers" nillable="true" type="s1:ArrayOfJobUser" />
+              <s:element minOccurs="1" maxOccurs="1" name="SharedDomains" nillable="true" type="s1:ArrayOfJobSharedDomain" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfJobRequiredActivity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobRequiredActivity" nillable="true" type="s1:JobRequiredActivity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JobRequiredActivity">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobRequiredActivityCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobRequiredActivityCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobRequiredActivityPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobRequiredActivityPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Job" type="s1:Job" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+              <s:element minOccurs="1" maxOccurs="1" name="MinimumGrade" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsRequired" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfJobRequiredSkill">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobRequiredSkill" nillable="true" type="s1:JobRequiredSkill" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JobRequiredSkill">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobRequiredSkillCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobRequiredSkillCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobRequiredSkillPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobRequiredSkillPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Job" type="s1:Job" />
+              <s:element minOccurs="0" maxOccurs="1" name="SkillId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Skill" type="s1:Skill" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScaleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScale" type="s1:ProficiencyScale" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValueId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValue" type="s1:ProficiencyValue" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfJobRequiredCompetency">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobRequiredCompetency" nillable="true" type="s1:JobRequiredCompetency" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JobRequiredCompetency">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobRequiredCompetencyCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobRequiredCompetencyCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobRequiredCompetencyPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobRequiredCompetencyPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Job" type="s1:Job" />
+              <s:element minOccurs="0" maxOccurs="1" name="CompetencyId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Competency" type="s1:Competency" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfJobSharedDomain">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobSharedDomain" nillable="true" type="s1:JobSharedDomain" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JobSharedDomain">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobSharedDomainCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobSharedDomainCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:JobSharedDomainPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobSharedDomainPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Job" type="s1:Job" />
+              <s:element minOccurs="0" maxOccurs="1" name="DomainId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s1:Domain" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrganizationUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrganizationUser" nillable="true" type="s1:OrganizationUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrganizationUser">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationUserCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationUserCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationUserPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationUserPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OrganizationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Organization" type="s1:Organization" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s1:User" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsPrimaryOrganization" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfPersonRelation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PersonRelation" nillable="true" type="s1:PersonRelation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrganizationRequiredActivity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrganizationRequiredActivity" nillable="true" type="s1:OrganizationRequiredActivity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrganizationRequiredActivity">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationRequiredActivityCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationRequiredActivityCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationRequiredActivityPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationRequiredActivityPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OrganizationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Organization" type="s1:Organization" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s1:Activity" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+              <s:element minOccurs="1" maxOccurs="1" name="MinimumGrade" type="s1:NullableInt32" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsRequired" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrganizationRequiredSkill">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrganizationRequiredSkill" nillable="true" type="s1:OrganizationRequiredSkill" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrganizationRequiredSkill">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationRequiredSkillCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationRequiredSkillCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationRequiredSkillPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationRequiredSkillPropertyBase" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Entity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OrganizationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Organization" type="s1:Organization" />
+              <s:element minOccurs="0" maxOccurs="1" name="SkillId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Skill" type="s1:Skill" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScaleId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyScale" type="s1:ProficiencyScale" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValueId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProficiencyValue" type="s1:ProficiencyValue" />
+              <s:element minOccurs="0" maxOccurs="1" name="PriorityId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s1:Priority" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrganizationRequiredCompetency">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrganizationRequiredCompetency" nillable="true" type="s1:OrganizationRequiredCompetency" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrganizationRequiredCompetency">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationRequiredCompetencyCore" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OrganizationRequiredCompetencyCore" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:OrganizationRequiredCompetencyPropertyBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="CompletionStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotCompleted" />
+          <s:enumeration value="Completed" />
+          <s:enumeration value="UnsupportedValue" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SuccessStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Fail" />
+          <s:enumeration value="Pass" />
+          <s:enumeration value="UnsupportedValue" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.sumtotalsystems.com/sumtotal7/sumtotalws/">
+      <s:element name="UserSecurityContext" type="s2:UserSecurityContext" />
+      <s:complexType name="UserSecurityContext">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s2:UserToken" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identity" type="s2:AspenContextIdentity" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="UserToken">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AspenContextIdentity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VcUserId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UsrPk" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmpPk" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LangPk" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DomainPk" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MustChangePassword" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetUserTranscriptsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserTranscripts" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserTranscriptsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsUserSecurityContext">
+    <wsdl:part name="UserSecurityContext" element="s2:UserSecurityContext" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsByDtSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserTranscriptsByDt" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsByDtSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserTranscriptsByDtResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsByDtUserSecurityContext">
+    <wsdl:part name="UserSecurityContext" element="s2:UserSecurityContext" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsHttpGetIn">
+    <wsdl:part name="forUserId" type="s:string" />
+    <wsdl:part name="populationLevel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfActivityAttempt" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsByDtHttpGetIn">
+    <wsdl:part name="inUTC" type="s:string" />
+    <wsdl:part name="forUserId" type="s:string" />
+    <wsdl:part name="forActivityId" type="s:string" />
+    <wsdl:part name="populationLevel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsByDtHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfActivityAttempt" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsHttpPostIn">
+    <wsdl:part name="forUserId" type="s:string" />
+    <wsdl:part name="populationLevel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfActivityAttempt" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsByDtHttpPostIn">
+    <wsdl:part name="inUTC" type="s:string" />
+    <wsdl:part name="forUserId" type="s:string" />
+    <wsdl:part name="forActivityId" type="s:string" />
+    <wsdl:part name="populationLevel" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTranscriptsByDtHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfActivityAttempt" />
+  </wsdl:message>
+  <wsdl:portType name="TranscriptManagementSoap">
+    <wsdl:operation name="GetUserTranscripts">
+      <wsdl:input message="tns:GetUserTranscriptsSoapIn" />
+      <wsdl:output message="tns:GetUserTranscriptsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTranscriptsByDt">
+      <wsdl:input message="tns:GetUserTranscriptsByDtSoapIn" />
+      <wsdl:output message="tns:GetUserTranscriptsByDtSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TranscriptManagementHttpGet">
+    <wsdl:operation name="GetUserTranscripts">
+      <wsdl:input message="tns:GetUserTranscriptsHttpGetIn" />
+      <wsdl:output message="tns:GetUserTranscriptsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTranscriptsByDt">
+      <wsdl:input message="tns:GetUserTranscriptsByDtHttpGetIn" />
+      <wsdl:output message="tns:GetUserTranscriptsByDtHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TranscriptManagementHttpPost">
+    <wsdl:operation name="GetUserTranscripts">
+      <wsdl:input message="tns:GetUserTranscriptsHttpPostIn" />
+      <wsdl:output message="tns:GetUserTranscriptsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTranscriptsByDt">
+      <wsdl:input message="tns:GetUserTranscriptsByDtHttpPostIn" />
+      <wsdl:output message="tns:GetUserTranscriptsByDtHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TranscriptManagementSoap" type="tns:TranscriptManagementSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserTranscripts">
+      <soap:operation soapAction="http://www.sumtotalsystems.com/sumtotal7/sumtotalws/TranscriptManagement/GetUserTranscripts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUserTranscriptsUserSecurityContext" part="UserSecurityContext" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTranscriptsByDt">
+      <soap:operation soapAction="http://www.sumtotalsystems.com/sumtotal7/sumtotalws/TranscriptManagement/GetUserTranscriptsByDt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUserTranscriptsByDtUserSecurityContext" part="UserSecurityContext" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TranscriptManagementSoap12" type="tns:TranscriptManagementSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserTranscripts">
+      <soap12:operation soapAction="http://www.sumtotalsystems.com/sumtotal7/sumtotalws/TranscriptManagement/GetUserTranscripts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserTranscriptsUserSecurityContext" part="UserSecurityContext" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTranscriptsByDt">
+      <soap12:operation soapAction="http://www.sumtotalsystems.com/sumtotal7/sumtotalws/TranscriptManagement/GetUserTranscriptsByDt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserTranscriptsByDtUserSecurityContext" part="UserSecurityContext" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TranscriptManagementHttpGet" type="tns:TranscriptManagementHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetUserTranscripts">
+      <http:operation location="/GetUserTranscripts" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTranscriptsByDt">
+      <http:operation location="/GetUserTranscriptsByDt" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TranscriptManagementHttpPost" type="tns:TranscriptManagementHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetUserTranscripts">
+      <http:operation location="/GetUserTranscripts" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTranscriptsByDt">
+      <http:operation location="/GetUserTranscriptsByDt" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TranscriptManagement">
+    <wsdl:port name="TranscriptManagementSoap" binding="tns:TranscriptManagementSoap">
+      <soap:address location="http://uc.sumtotal.host/learningapi/services/transcriptmanagement.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TranscriptManagementSoap12" binding="tns:TranscriptManagementSoap12">
+      <soap12:address location="http://uc.sumtotal.host/learningapi/services/transcriptmanagement.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TranscriptManagementHttpGet" binding="tns:TranscriptManagementHttpGet">
+      <http:address location="http://uc.sumtotal.host/learningapi/services/transcriptmanagement.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TranscriptManagementHttpPost" binding="tns:TranscriptManagementHttpPost">
+      <http:address location="http://uc.sumtotal.host/learningapi/services/transcriptmanagement.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

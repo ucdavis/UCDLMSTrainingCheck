@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UCDLMSTrainingCheck.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UCDLMSTrainingCheck_lms_AuthWR_Authentication" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://uc.sumtotal.host/learningapi/services/authentication.asmx</Value>
+    </Setting>
+    <Setting Name="UCDLMSTrainingCheck_lms_UserMgntWR_UserManagement" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://uc.sumtotal.host/learningapi/services/usermanagement.asmx</Value>
+    </Setting>
+    <Setting Name="UCDLMSTrainingCheck_lms_TransMgntWR_TranscriptManagement" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://uc.sumtotal.host/learningapi/services/transcriptmanagement.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
